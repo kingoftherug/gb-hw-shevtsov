@@ -22,3 +22,60 @@
 # “количество”: [5, 2, 7],
 # “ед”: [“шт.”]
 # }
+
+command = 'н'
+goods = []
+i = 0
+is_end = False
+while not is_end:
+    print('*' * 30)
+    print('Меню')
+    print('Добавить товар: (н)')
+    print('Показать список товаров: (п)')
+    print('Показать аналитику: (а)')
+    print('Выйти из программы: (выход)')
+    command = input('Введите команду: ')
+    print('*' * 30)
+    # добавление товаров
+    if command == 'н':
+        enough = False
+        while not enough:
+            i += 1
+            name = input('Введите название товара: ')
+            price = input('Введите цену товара: ')
+            amount = input('Введете количество товара: ')
+            units = input('Введите единицы имерения товара: ')
+            info = {'название': name, 'цена': price, 'количество': amount, 'единицы измерения': units}
+            item = (i, info)
+            goods.append(item)
+            answer = input('Завести еще один товар? [да/нет]: ')
+            if answer.lower() != 'да':
+                enough = True
+            print('*' * 30)
+    # показать товары
+    elif command == 'п':
+        print(goods)
+    # показать аналитику
+    elif command == 'а':
+        if len(goods) > 0:
+            analyze = {}
+            # нашел все возможные ключи и установил в новый словарь
+            for item in goods:
+                for key in item[1].keys():
+                    analyze.setdefault(key)
+            # поиск по ключам справочника в кортежах с товарами
+            for key_analyze in analyze.keys():
+                val_list = []
+                for item in goods:
+                    for key_item, val in item[1].items():
+                        if key_item == key_analyze and val not in val_list:
+                            val_list.append(val)
+                analyze[key_analyze] = val_list
+            print(analyze)
+        else:
+            print('В базе нет товаров')
+    # завершить работу
+    elif command == 'выход':
+        is_end = True
+    else:
+        print('Такой команды нет, попробуйте еще раз')
