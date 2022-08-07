@@ -15,7 +15,7 @@ def my_func_hard(x, y):
     my_pow = x
     for i in range(1, -y):
         my_pow = x * my_pow
-    return 1/my_pow
+    return 1 / my_pow
 
 
 while True:
@@ -32,3 +32,9 @@ while True:
 
 print(my_func_easy(num1, num2))
 print(my_func_hard(num1, num2))
+
+
+# вариант из разбора дз
+
+# def i_involve_r(x, y):
+#     return 1 if y == 0 else i_involve_r(x, y + 1) * 1 / x

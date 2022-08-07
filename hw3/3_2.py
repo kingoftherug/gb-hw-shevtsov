@@ -5,7 +5,7 @@
 
 def my_f(**kwargs):
     """функция вывода переданных параметров"""
-    return kwargs
+    return ' '.join(kwargs.values())
 
 
 print(my_f(first_name='Вася', last_name='Иванов', birthdate='2000.12.01', city='Moscow', email='vasy@ivanov.ru',
