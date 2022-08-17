@@ -11,3 +11,11 @@
 # Пример json-объекта:
 # [{"firm_1": 5000, "firm_2": 3000, "firm_3": 1000}, {"average_profit": 2000}]
 # Подсказка: использовать менеджер контекста.
+
+import json
+
+with open('company.json', 'w', encoding='utf-8') as write_j, open('text_7.txt', encoding='utf-8') as file:
+    profit = {line.split()[0]: int(line.split()[2]) - int(line.split()[3]) for line in file}
+    f_up = [i for i in profit.values() if i > 0]
+    result = [profit, {'средняя прибыль': round(sum(f_up) / len(f_up))}]
+    json.dump(result, write_j, ensure_ascii=False, indent=4)
